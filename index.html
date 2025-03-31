@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Databases for Big Data Mind Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .mindmap {
+            position: relative;
+            width: 900px;
+            height: 600px;
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .node {
+            position: absolute;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .red {
+            background-color: #ffcccc;
+            border: 2px solid #e60000;
+            color: #990000;
+        }
+        .blue {
+            background-color: #cce5ff;
+            border: 2px solid #0066cc;
+            color: #004080;
+        }
+        .green {
+            background-color: #ccffcc;
+            border: 2px solid #00cc00;
+            color: #006600;
+        }
+        /* Info panel styling */
+        #infoPanel {
+            width: 900px;
+            min-height: 150px;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .infoTitle {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .infoContent {
+            line-height: 1.5;
+        }
+        line {
+            stroke: #999;
+            stroke-width: 2;
+        }
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        .legendItem {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legendBox {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Databases for Big Data Mind Map</h1>
+
+        <!-- Mindmap Container -->
+        <div class="mindmap" id="mindmap">
+            <!-- SVG for connecting lines -->
+            <svg width="900" height="600" style="position: absolute; top: 0; left: 0;">
+                <!-- Lines from the center (Databases for Big Data) to 4 major categories -->
+                <line x1="450" y1="300" x2="200" y2="130" />  <!-- to ACID & BASE -->
+                <line x1="450" y1="300" x2="700" y2="130" />  <!-- to CAP Theorem -->
+                <line x1="450" y1="300" x2="200" y2="470" />  <!-- to Types of NoSQL -->
+                <line x1="450" y1="300" x2="700" y2="470" />  <!-- to MongoDB -->
+
+                <!-- Lines for ACID & BASE subnodes -->
+                <line x1="200" y1="130" x2="120" y2="60" />
+                <line x1="200" y1="130" x2="280" y2="60" />
+
+                <!-- Lines for CAP Theorem subnodes -->
+                <line x1="700" y1="130" x2="620" y2="60" />
+                <line x1="700" y1="130" x2="780" y2="60" />
+
+                <!-- Lines for Types of NoSQL subnodes -->
+                <line x1="200" y1="470" x2="120" y2="540" />
+                <line x1="200" y1="470" x2="280" y2="540" />
+                <line x1="200" y1="470" x2="120" y2="400" />
+                <line x1="200" y1="470" x2="280" y2="400" />
+
+                <!-- Lines for MongoDB subnodes -->
+                <line x1="700" y1="470" x2="620" y2="540" />
+                <line x1="700" y1="470" x2="780" y2="540" />
+            </svg>
+
+            <!-- Center Node -->
+            <div class="node red" style="width: 180px; top: 270px; left: 360px;"
+                 onclick="showInfo('Databases for Big Data',
+                 '<ul><li>Massive volumes of data require <span class=&quot;highlight&quot;>efficient scaling</span>.</li><li>Data can be <span class=&quot;highlight&quot;>unstructured or semi-structured</span>.</li><li>NoSQL offers flexible schemas and horizontal scalability.</li></ul>')">
+                Databases for Big Data
+            </div>
+
+            <!-- Major Category: ACID & BASE -->
+            <div class="node blue" style="width: 120px; top: 100px; left: 140px;"
+                 onclick="showInfo('ACID & BASE',
+                 '<ul><li><span class=&quot;highlight&quot;>ACID</span> ensures consistency and reliability in traditional RDBMS.</li><li><span class=&quot;highlight&quot;>BASE</span> is a looser model with <em>eventual consistency</em> for scaling.</li></ul>')">
+                ACID & BASE
+            </div>
+            <!-- Sub-nodes for ACID & BASE -->
+            <div class="node green" style="width: 90px; top: 30px; left: 70px;"
+                 onclick="showInfo('ACID Properties',
+                 '<ul><li><strong>A</strong>tomicity: all-or-nothing transactions.</li><li><strong>C</strong>onsistency: valid states only.</li><li><strong>I</strong>solation: concurrency control.</li><li><strong>D</strong>urability: changes persist.</li></ul>')">
+                ACID
+            </div>
+            <div class="node green" style="width: 90px; top: 30px; left: 250px;"
+                 onclick="showInfo('BASE',
+                 '<ul><li><strong>B</strong>asically <strong>A</strong>vailable.</li><li><strong>S</strong>oft state.</li><li><strong>E</strong>ventual consistency.</li><li>Sacrifices immediate consistency for <em>scalability</em>.</li></ul>')">
+                BASE
+            </div>
+
+            <!-- Major Category: CAP Theorem -->
+            <div class="node blue" style="width: 120px; top: 100px; left: 640px;"
+                 onclick="showInfo('CAP Theorem',
+                 '<ul><li>States that you can have only <em>two</em> of <strong>C</strong>onsistency, <strong>A</strong>vailability, <strong>P</strong>artition Tolerance in a partitioned network.</li></ul>')">
+                CAP Theorem
+            </div>
+            <!-- Sub-nodes for CAP Theorem -->
+            <div class="node green" style="width: 100px; top: 30px; left: 570px;"
+                 onclick="showInfo('Consistency',
+                 '<ul><li>All nodes see the same data <em>at the same time</em>.</li><li>Often sacrificed in distributed NoSQL for better availability.</li></ul>')">
+                Consistency
+            </div>
+            <div class="node green" style="width: 100px; top: 30px; left: 730px;"
+                 onclick="showInfo('Availability',
+                 '<ul><li>Every request gets a response, even if some nodes are down.</li><li>Systems often replicate data for <em>high availability</em>.</li></ul>')">
+                Availability
+            </div>
+
+            <!-- Major Category: Types of NoSQL -->
+            <div class="node blue" style="width: 130px; top: 440px; left: 140px;"
+                 onclick="showInfo('Types of NoSQL',
+                 '<ul><li>Different data models suited to varied applications.</li><li>Key-Value, Document, Column, Graph are the <span class=&quot;highlight&quot;>main families</span>.</li></ul>')">
+                Types of NoSQL
+            </div>
+            <!-- Sub-nodes for Types of NoSQL -->
+            <div class="node green" style="width: 90px; top: 370px; left: 70px;"
+                 onclick="showInfo('Key-Value',
+                 '<ul><li>Stores (key, value) pairs.</li><li>Hash-based, extremely fast lookups by key.</li><li>Limited query complexity.</li></ul>')">
+                Key-Value
+            </div>
+            <div class="node green" style="width: 90px; top: 370px; left: 250px;"
+                 onclick="showInfo('Document',
+                 '<ul><li>Stores JSON-like <em>documents</em>.</li><li>Flexible schemas, nested structures.</li><li>Examples: MongoDB, CouchDB.</li></ul>')">
+                Document
+            </div>
+            <div class="node green" style="width: 90px; top: 500px; left: 70px;"
+                 onclick="showInfo('Column',
+                 '<ul><li>Stores data by columns, not rows.</li><li>Efficient for analytical queries &amp; sparse data.</li><li>Examples: Cassandra, HBase.</li></ul>')">
+                Column
+            </div>
+            <div class="node green" style="width: 90px; top: 500px; left: 250px;"
+                 onclick="showInfo('Graph',
+                 '<ul><li>Stores data as nodes &amp; edges.</li><li>Ideal for connected data (social networks, recommendations).</li><li>Example: Neo4j.</li></ul>')">
+                Graph
+            </div>
+
+            <!-- Major Category: MongoDB -->
+            <div class="node blue" style="width: 120px; top: 440px; left: 640px;"
+                 onclick="showInfo('MongoDB',
+                 '<ul><li>Popular <em>document store</em>.</li><li>Uses BSON (Binary JSON).</li><li>Offers sharding &amp; replication.</li></ul>')">
+                MongoDB
+            </div>
+            <!-- Sub-nodes for MongoDB -->
+            <div class="node green" style="width: 100px; top: 510px; left: 570px;"
+                 onclick="showInfo('Sharding',
+                 '<ul><li>Splits data horizontally across multiple nodes.</li><li>Improves scalability &amp; distribution.</li></ul>')">
+                Sharding
+            </div>
+            <div class="node green" style="width: 100px; top: 510px; left: 730px;"
+                 onclick="showInfo('Replication',
+                 '<ul><li>Multiple copies of data (replica sets) for <em>fault tolerance</em>.</li><li>Automatic failover if primary node fails.</li></ul>')">
+                Replication
+            </div>
+        </div>
+
+        <!-- Information Panel -->
+        <div id="infoPanel">
+            <div class="infoTitle" id="infoTitle">Click on a concept to see details</div>
+            <div class="infoContent" id="infoContent">
+                Select any node in the mind map to display detailed information.
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legendItem">
+                <div class="legendBox red"></div>
+                <span>Big Picture Concept</span>
+            </div>
+            <div class="legendItem">
+                <div class="legendBox blue"></div>
+                <span>Major Category</span>
+            </div>
+            <div class="legendItem">
+                <div class="legendBox green"></div>
+                <span>Details &amp; Subtopics</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showInfo(title, content) {
+            document.getElementById("infoPanel").style.display = "block";
+            document.getElementById("infoTitle").textContent = title;
+            document.getElementById("infoContent").innerHTML = content;
+        }
+    </script>
+</body>
+</html>
